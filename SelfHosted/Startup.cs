@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Data.SQLite;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SelfHosted.Controller.V1;
+using Service.Database;
 using Service.SlushMachine;
 
 namespace SelfHosted;
@@ -22,6 +24,7 @@ public class Startup
         services.AddAutoMapper(typeof(MapperProfile).Assembly);
 
         services.AddSingleton<ISlushMachineService, SlushMachineService>();
+        services.AddSingleton<IDatabaseService, SqLiteService>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
