@@ -1,6 +1,6 @@
 ﻿using System.Data.Common;
 using System.Data.SQLite;
-using Service.SlushMachine.Domain;
+using Service.SlushMachines.Domain;
 
 namespace Service.Database;
 
@@ -49,5 +49,11 @@ public class SqLiteService : IDatabaseService
 
         using var checkCommend = new SQLiteCommand(statement, (SQLiteConnection) connection);
         checkCommend.ExecuteNonQuery();
+    }
+
+    public DbDataReader Get(string sql, DbConnection connection)
+    {
+        using var command = new SQLiteCommand(sql, (SQLiteConnection) connection);
+        return command.ExecuteReader();
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Service.SlushMachine.Domain;
+﻿namespace Service.SlushMachines.Domain;
 
 public class Measurement
 {

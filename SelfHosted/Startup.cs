@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SelfHosted.Controller.V1;
 using Service.Database;
-using Service.SlushMachine;
+using Service.SlushMachines;
 
 namespace SelfHosted;
 

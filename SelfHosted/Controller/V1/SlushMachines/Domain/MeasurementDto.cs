@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace SelfHosted.Controller.V1.SlushMachine.Domain;
+namespace SelfHosted.Controller.V1.SlushMachines.Domain;
 
 public class MeasurementDto
 {
