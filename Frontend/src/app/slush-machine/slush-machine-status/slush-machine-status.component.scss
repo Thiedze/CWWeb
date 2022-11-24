@@ -3,12 +3,9 @@
   top: 0;
   left: 0;
 }
-.background {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 1649px;
-  height: 1862px;
+
+.slush-machine {
+  max-height: calc(100vh - 120px);
 }
 
 .left-slush-machine-mask {
@@ -17,16 +14,9 @@
   left: 0;
   mask-image: url(../../../assets/Slush_Level_Template_Left.png);
   mask-repeat: no-repeat;
-  width: 1649px;
-  height: 1862px;
-}
-
-.left-slush-machine-level {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1649px;
-  height: 1862px;
+  mask-size: contain;
+  width: 100%;
+  height: 100%;
 }
 
 .right-slush-machine-mask {
@@ -35,15 +25,24 @@
   left: 0;
   mask-image: url(../../../assets/Slush_Level_Template_Right.png);
   mask-repeat: no-repeat;
-  width: 1649px;
-  height: 1862px;
+  mask-size: contain;
+  width: 100%;
+  height: 100%
+}
+
+
+.left-slush-machine-level {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%
 }
 
 .right-slush-machine-level {
   position: absolute;
   top: 0;
   left: 0;
-  background: linear-gradient(transparent 50%, rgb(0,255,0));
-  width: 1649px;
-  height: 1862px;
+  width: 100%;
+  height: 100%
 }

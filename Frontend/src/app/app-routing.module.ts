@@ -5,9 +5,9 @@ import {SlushMachineAdminComponent} from "./slush-machine/slush-machine-admin/sl
 
 
 const appRoutes: Routes = [
-    {path : '', component : AppComponent},
     {path : 'slush_machine_status', component : SlushMachineStatusComponent},
-    {path : 'slush_machine_admin', component : SlushMachineAdminComponent}
+    {path : 'slush_machine_admin', component : SlushMachineAdminComponent},
+    {path: '**', redirectTo: 'slush_machine_status'}
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
