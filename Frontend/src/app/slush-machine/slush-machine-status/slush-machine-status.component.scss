@@ -1,0 +1,49 @@
+.parent {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.background {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 1649px;
+  height: 1862px;
+}
+
+.left-slush-machine-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  mask-image: url(../../../assets/Slush_Level_Template_Left.png);
+  mask-repeat: no-repeat;
+  width: 1649px;
+  height: 1862px;
+}
+
+.left-slush-machine-level {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1649px;
+  height: 1862px;
+}
+
+.right-slush-machine-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  mask-image: url(../../../assets/Slush_Level_Template_Right.png);
+  mask-repeat: no-repeat;
+  width: 1649px;
+  height: 1862px;
+}
+
+.right-slush-machine-level {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(transparent 50%, rgb(0,255,0));
+  width: 1649px;
+  height: 1862px;
+}
