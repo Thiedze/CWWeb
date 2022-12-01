@@ -1,53 +1,56 @@
-mat-card-content {
-  // transform: translateX(25%);
-}
-
-.parent {
-  position: relative;
+.position {
   top: 0;
   left: 0;
 }
 
+.relative {
+  position: relative;
+  height: 80% !important;
+  margin: auto;
+}
+
 .slush-machine {
-  max-height: calc(100vh - 300px);
+  max-height: 100%;
   max-width: 100%;
 }
 
 .left-slush-machine-mask {
   position: absolute;
-  top: 0;
-  left: 0;
+  width: 100%;
+  height: 100%;
+
+
   mask-image: url(../../../assets/Slush_Level_Template_Left.png);
   mask-repeat: no-repeat;
   mask-size: contain;
+
+  @extend .position;
+}
+
+.left-slush-machine-level {
+  position: absolute;
   width: 100%;
   height: 100%;
+
+  @extend .position;
 }
 
 .right-slush-machine-mask {
   position: absolute;
-  top: 0;
-  left: 0;
+  width: 100%;
+  height: 100%;
+
   mask-image: url(../../../assets/Slush_Level_Template_Right.png);
   mask-repeat: no-repeat;
   mask-size: contain;
-  width: 100%;
-  height: 100%;
-}
 
-
-.left-slush-machine-level {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%
+  @extend .position;
 }
 
 .right-slush-machine-level {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%
+  height: 100%;
+
+  @extend .position;
 }

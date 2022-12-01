@@ -12,7 +12,7 @@ export class SlushMachineStatusComponent {
     public top: number = 0;
     public left: number = 0;
     public height: number = 0;
-    public leftLevel: number = 20;
+    public leftLevel: number = 0;
     public show: boolean = true;
 
     constructor() {

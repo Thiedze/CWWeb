@@ -1,7 +1,9 @@
-<mat-card>
-    <button mat-button [matMenuTriggerFor]="slush_machine">Slush Machine</button>
-    <mat-menu #slush_machine="matMenu">
-        <button mat-menu-item routerLink="/slush_machine_status" routerLinkActive="active" >Status</button>
-        <button mat-menu-item routerLink="/slush_machine_admin" routerLinkActive="active">Admin</button>
-    </mat-menu>
+<mat-card appearance="outlined">
+    <mat-card-content>
+        <button [matMenuTriggerFor]="slush_machine" mat-button>Slush Machine</button>
+        <mat-menu #slush_machine="matMenu">
+            <button mat-menu-item routerLink="/slush_machine_status" routerLinkActive="active">Status</button>
+            <button mat-menu-item routerLink="/slush_machine_admin" routerLinkActive="active">Admin</button>
+        </mat-menu>
+    </mat-card-content>
 </mat-card>

@@ -1,19 +1,15 @@
-<mat-card>
-    <mat-card-content>
-        <div class="parent">
-            <img #slush_machine class="slush-machine" src="../../../assets/Slush_Machine.png"/>
-            <div *ngIf="show">
-                <div class="left-slush-machine-mask">
-                    <div [ngStyle]="{'background': 'linear-gradient(transparent ' + leftLevel +  '%, rgba(255,0,0))'}"
-                         class="left-slush-machine-level">
-                    </div>
-                </div>
-                <div class="right-slush-machine-mask">
-                    <div [ngStyle]="{'background': 'linear-gradient(transparent ' + leftLevel +  '%, rgba(0,255,0))'}"
-                         class="right-slush-machine-level">
-                    </div>
-                </div>
+<div class="relative">
+    <img #slush_machine class="slush-machine" src="../../../assets/Slush_Machine.png"/>
+    <div *ngIf="show">
+        <div class="left-slush-machine-mask">
+            <div [ngStyle]="{'background': 'linear-gradient(transparent ' + leftLevel +  '%, rgba(255,0,0))'}"
+                 class="left-slush-machine-level">
             </div>
         </div>
-    </mat-card-content>
-</mat-card>
+        <div class="right-slush-machine-mask">
+            <div [ngStyle]="{'background': 'linear-gradient(transparent ' + leftLevel +  '%, rgba(0,255,0))'}"
+                 class="right-slush-machine-level">
+            </div>
+        </div>
+    </div>
+</div>
