@@ -11,10 +11,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controller\V1\ImageUpload" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Service\Service.csproj" />
     </ItemGroup>
 

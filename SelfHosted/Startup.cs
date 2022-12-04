@@ -1,33 +1,43 @@
 ﻿using System;
+using System.Configuration;
 using System.Data.SQLite;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using SelfHosted.Controller.V1;
+using SelfHosted.Controller.V1.Authorizations;
+using SelfHosted.Controller.V1.Authorizations.Domain;
 using Service.Database;
 using Service.SlushMachines;
+using Service.Users;
 
 namespace SelfHosted;
 
 public class Startup
 {
-    // This method gets called by the runtime. Use this method to add services to the container.
+    private IConfiguration Configuration { get; }
+    public Startup(IConfiguration configuration)
+    {
+        Configuration = configuration;
+    }
+    
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers();
-
-        // services.AddLocalization(options => options.ResourcesPath = "Resources/Localization");
-        // services.AddSingleton<ILocalizerService, LocalizerService>();
-
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         services.AddAutoMapper(typeof(MapperProfile).Assembly);
 
         services.AddSingleton<ISlushMachineService, SlushMachineService>();
         services.AddSingleton<IDatabaseService, SqLiteService>();
+        services.AddSingleton<IUserService, UserService>();
+        
+        services.AddOptions<AppSettings>().Bind(Configuration.GetSection("AppSettings"));   
+        services.AddCors();
     }
 
-    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
         IHostApplicationLifetime applicationLifetime)
     {
@@ -36,7 +46,9 @@ public class Startup
             app.UseDeveloperExceptionPage();
         }
 
+        app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
         app.UseRouting();
+        app.UseMiddleware<JwtMiddleware>();
         app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
     }
 }

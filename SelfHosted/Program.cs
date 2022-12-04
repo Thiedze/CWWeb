@@ -19,6 +19,7 @@ public static class Program
                 webBuilder.UseSetting("https_port", httpsPort.ToString());
                 webBuilder.UseUrls(baseUrls);
                 webBuilder.UseStartup<Startup>();
+                webBuilder.GetSetting("AppSettings");
             });
     }
 }

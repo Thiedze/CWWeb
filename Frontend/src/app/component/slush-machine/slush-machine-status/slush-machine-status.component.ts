@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {SlushMachine} from "../../domain/slush-machine";
+import {SlushMachine} from "../../../domain/slush-machine";
 
 @Component({
   selector: 'app-slush-machine-status',
@@ -19,7 +19,7 @@ export class SlushMachineStatusComponent {
 
     this.rightSlushMachine = new SlushMachine();
     this.rightSlushMachine.id= 'right';
-    this.rightSlushMachine.level = 10;
+    this.rightSlushMachine.level = 90;
   }
 
   public onLoad(): void {

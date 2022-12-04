@@ -1,8 +1,8 @@
 export class SlushMachine {
 
-  public id: string | undefined;
-  public status: string | undefined;
-  public level: number | undefined;
-  public flavor: string | undefined;
+  public id?: string;
+  public status?: string;
+  public level?: number;
+  public flavor?: string;
 
 }
