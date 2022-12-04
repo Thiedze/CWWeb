@@ -1,26 +1,38 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
+import {SlushMachine} from "../../domain/slush-machine";
 
 @Component({
-    selector: 'app-slush-machine-status',
-    templateUrl: './slush-machine-status.component.html',
-    styleUrls: ['./slush-machine-status.component.scss']
+  selector: 'app-slush-machine-status',
+  templateUrl: './slush-machine-status.component.html',
+  styleUrls: ['./slush-machine-status.component.scss']
 })
 export class SlushMachineStatusComponent {
 
-    @ViewChild("slush_machine") background: ElementRef | undefined;
-    public width: number = 0;
-    public top: number = 0;
-    public left: number = 0;
-    public height: number = 0;
-    public leftLevel: number = 0;
-    public show: boolean = true;
+  public show: boolean = true;
+  public leftSlushMachine: SlushMachine;
+  public rightSlushMachine: SlushMachine;
 
-    constructor() {
-    }
+  constructor() {
+    this.leftSlushMachine = new SlushMachine();
+    this.leftSlushMachine.id= 'left';
+    this.leftSlushMachine.level = 50;
 
-    onLoad() {
-        this.width = this.background?.nativeElement.width;
-        this.height = this.background?.nativeElement.height;
-        this.show = true;
+    this.rightSlushMachine = new SlushMachine();
+    this.rightSlushMachine.id= 'right';
+    this.rightSlushMachine.level = 10;
+  }
+
+  public onLoad(): void {
+    this.show = true;
+  }
+
+  public getLevel(slushMachine: SlushMachine, offset: number = 0): string {
+    // gradient starts at 70%
+    if (slushMachine.level != undefined) {
+      const level = ((slushMachine.level / 100) * 70) + offset;
+      return level.toString();
     }
+    return "0";
+  }
+
 }
