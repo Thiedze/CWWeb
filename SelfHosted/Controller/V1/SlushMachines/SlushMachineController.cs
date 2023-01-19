@@ -10,14 +10,14 @@ namespace SelfHosted.Controller.V1.SlushMachines;
 [ApiController]
 public class SlushMachineController : ControllerBase
 {
+    private IMapper Mapper { get; }
+    private ISlushMachineService SlushMachineService { get; }
+
     public SlushMachineController(ISlushMachineService slushMachineService, IMapper mapper)
     {
         SlushMachineService = slushMachineService;
         Mapper = mapper;
     }
-
-    private IMapper Mapper { get; }
-    private ISlushMachineService SlushMachineService { get; }
 
     [HttpPost]
     [Route(UrlConfiguration.V1ApiUrl + "/slush_machines/measurements")]

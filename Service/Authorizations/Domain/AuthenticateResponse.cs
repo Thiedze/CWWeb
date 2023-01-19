@@ -1,3 +1,5 @@
+using Service.Users.Domain;
+
 namespace Service.Authorizations.Domain;
 
 public class AuthenticateResponse
@@ -9,7 +11,7 @@ public class AuthenticateResponse
     public string Token { get; set; }
 
 
-    public AuthenticateResponse(Service.Users.Domain.User user, string token)
+    public AuthenticateResponse(User user, string token)
     {
         Id = user.Id;
         FirstName = user.FirstName;

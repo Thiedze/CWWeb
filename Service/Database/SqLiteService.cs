@@ -1,59 +1,31 @@
-﻿using System.Data.Common;
-using System.Data.SQLite;
-using Service.SlushMachines.Domain;
+﻿using Service.SlushMachines.Domain;
+using Service.Users.Domain;
 
 namespace Service.Database;
 
 public class SqLiteService : IDatabaseService
 {
-    public DbConnection CreateAndOpenConnection(string connectionString)
+    public void Insert(Measurement measurement)
     {
-        var connection = new SQLiteConnection(connectionString);
-        connection.Open();
-        return connection;
+        using var dataContext = new DataContext();
+        dataContext.Add(measurement);
+        dataContext.SaveChangesAsync();
     }
 
-    public void CreateDatabaseIfNotExist(string name, DbConnection connection)
+    public T? Get<T>(int id)
     {
-        if (!File.Exists(name))
+        using var dataContext = new DataContext();
+        if (typeof(T) == typeof(User))
         {
-            File.Create(name);
+            return (T) Convert.ChangeType(dataContext.Users?.FirstOrDefault(user => user.Id == id), typeof(T))!;
         }
-    }
 
-    public void CreateTableIfNotExist(string name, DbConnection connection)
-    {
-        var statement = $"SELECT name FROM sqlite_master WHERE type='table' AND name='{name}'";
-
-        using var checkCommend = new SQLiteCommand(statement, (SQLiteConnection) connection);
-        using var reader = checkCommend.ExecuteReader();
-
-        if (!reader.Read())
+        if (typeof(T) == typeof(Measurement))
         {
-            statement =
-                "CREATE TABLE measurement (\"timestamp\" TEXT, point_0 INTEGER, point_1 INTEGER, point_2 INTEGER, point_3 INTEGER)";
-            using var createCommand = new SQLiteCommand(statement, (SQLiteConnection) connection);
-            createCommand.ExecuteNonQuery();
+            return (T) Convert.ChangeType(dataContext.Measurements?.FirstOrDefault(measurement => measurement.Id == id),
+                typeof(T))!;
         }
-    }
 
-    public void Insert(Measurement measurement, DbConnection connection)
-    {
-        var statement =
-            $"INSERT INTO measurement VALUES(" +
-            $"'{measurement.Timestamp}', " +
-            $"{measurement.Points[0]}, " +
-            $"{measurement.Points[1]}, " +
-            $"{measurement.Points[2]}, " +
-            $"{measurement.Points[3]})";
-
-        using var checkCommend = new SQLiteCommand(statement, (SQLiteConnection) connection);
-        checkCommend.ExecuteNonQuery();
-    }
-
-    public DbDataReader Get(string sql, DbConnection connection)
-    {
-        using var command = new SQLiteCommand(sql, (SQLiteConnection) connection);
-        return command.ExecuteReader();
+        return default;
     }
 }

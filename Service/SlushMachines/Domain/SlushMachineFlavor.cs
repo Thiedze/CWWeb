@@ -2,5 +2,7 @@
 
 public enum SlushMachineFlavor
 {
-    Cola, Strawberry, Energy
+    Cola,
+    Strawberry,
+    Energy
 }

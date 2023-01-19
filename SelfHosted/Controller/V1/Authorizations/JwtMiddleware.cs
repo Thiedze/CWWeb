@@ -13,8 +13,8 @@ namespace SelfHosted.Controller.V1.Authorizations;
 
 public class JwtMiddleware
 {
-    private readonly RequestDelegate _next;
     private readonly AppSettings _appSettings;
+    private readonly RequestDelegate _next;
 
     public JwtMiddleware(RequestDelegate next, IOptions<AppSettings> appSettings)
     {
@@ -27,7 +27,9 @@ public class JwtMiddleware
         var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
         if (token != null)
+        {
             AttachUserToContext(context, userService, token);
+        }
 
         await _next(context);
     }
@@ -46,9 +48,9 @@ public class JwtMiddleware
                 ValidateAudience = false,
                 // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
                 ClockSkew = TimeSpan.Zero
-            }, out SecurityToken validatedToken);
+            }, out var validatedToken);
 
-            var jwtToken = (JwtSecurityToken)validatedToken;
+            var jwtToken = (JwtSecurityToken) validatedToken;
             var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
 
             // attach user to context on successful jwt validation

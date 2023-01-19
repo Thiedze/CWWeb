@@ -2,5 +2,8 @@
 
 public enum SlushMachineStatus
 {
-    Locked, Freezing, Draw, OutOfOrder
+    Locked,
+    Freezing,
+    Draw,
+    OutOfOrder
 }

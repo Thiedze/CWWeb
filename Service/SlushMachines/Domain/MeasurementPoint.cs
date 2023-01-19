@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Service.SlushMachines.Domain;
 
-public class Measurement
+public class MeasurementPoint
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
-    public DateTime Timestamp { get; set; }
-    public List<MeasurementPoint> MeasurementPoints { get; set; } = new();
+    
+    public double Value { get; set; }
 }
