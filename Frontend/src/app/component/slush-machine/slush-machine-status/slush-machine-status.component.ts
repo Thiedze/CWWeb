@@ -16,23 +16,25 @@ export class SlushMachineStatusComponent {
     this.leftSlushMachine = new SlushMachine();
     this.leftSlushMachine.id= 'left';
     this.leftSlushMachine.level = 50;
+    this.leftSlushMachine.color = 'lime';
 
     this.rightSlushMachine = new SlushMachine();
     this.rightSlushMachine.id= 'right';
     this.rightSlushMachine.level = 90;
+    this.rightSlushMachine.color = 'blue';
   }
 
   public onLoad(): void {
     this.show = true;
   }
 
-  public getLevel(slushMachine: SlushMachine, offset: number = 0): string {
+  public getLevel(slushMachine: SlushMachine, offset: number = 0): number {
     // gradient starts at 70%
     if (slushMachine.level != undefined) {
       const level = ((slushMachine.level / 100) * 70) + offset;
-      return level.toString();
+      return level;
     }
-    return "0";
+    return 0;
   }
 
 }

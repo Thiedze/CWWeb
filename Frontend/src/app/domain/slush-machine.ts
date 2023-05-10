@@ -4,5 +4,6 @@ export class SlushMachine {
   public status?: string;
   public level?: number;
   public flavor?: string;
+  public color?: string;
 
 }
