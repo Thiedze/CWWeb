@@ -1,4 +1,6 @@
-﻿using Service.SlushMachines.Domain;
+﻿using System;
+using System.Linq;
+using Service.SlushMachines.Domain;
 using Service.Users.Domain;
 
 namespace Service.Database;
@@ -12,7 +14,7 @@ public class SqLiteService : IDatabaseService
         dataContext.SaveChangesAsync();
     }
 
-    public T? Get<T>(int id)
+    public T Get<T>(int id)
     {
         using var dataContext = new DataContext();
         if (typeof(T) == typeof(User))

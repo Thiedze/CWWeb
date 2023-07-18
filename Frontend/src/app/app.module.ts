@@ -27,7 +27,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatMenuModule} from "@angular/material/menu";
 import {SlushMachineComponent} from './component/slush-machine/slush-machine.component';
 import {
-  SlushMachineStatusComponent
+    SlushMachineStatusComponent
 } from './component/slush-machine/slush-machine-status/slush-machine-status.component';
 import {RouterModule} from "@angular/router";
 import {SlushMachineAdminComponent} from './component/slush-machine/slush-machine-admin/slush-machine-admin.component';
@@ -37,64 +37,64 @@ import {JwtInterceptor} from "./service/jwt.interceptor";
 import {ErrorInterceptor} from "./service/error.interceptor";
 
 export const tooltipDefaults: MatTooltipDefaultOptions = {
-  showDelay: 1200,
-  hideDelay: 100,
-  touchendHideDelay: 1000,
+    showDelay: 1200,
+    hideDelay: 100,
+    touchendHideDelay: 1000,
 };
 
 const materialModules = [
-  MatSelectModule,
-  MatButtonModule,
-  MatCheckboxModule,
-  MatAutocompleteModule,
-  MatInputModule,
-  MatOptionModule,
-  MatProgressBarModule,
-  MatIconModule,
-  MatDialogModule,
-  MatSnackBarModule,
-  MatDividerModule,
-  MatTabsModule,
-  MatRadioModule,
-  MatCardModule,
-  MatListModule,
-  MatSlideToggleModule,
-  MatMenuModule
+    MatSelectModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    MatOptionModule,
+    MatProgressBarModule,
+    MatIconModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatDividerModule,
+    MatTabsModule,
+    MatRadioModule,
+    MatCardModule,
+    MatListModule,
+    MatSlideToggleModule,
+    MatMenuModule
 ];
 
 const customComponents = [
-  MenuComponent,
-  LoginComponent,
-  SlushMachineComponent,
-  SlushMachineStatusComponent,
-  SlushMachineAdminComponent
+    MenuComponent,
+    LoginComponent,
+    SlushMachineComponent,
+    SlushMachineStatusComponent,
+    SlushMachineAdminComponent
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    customComponents
-  ],
-  imports: [
-    routing,
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    materialModules
-  ],
-  providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-    {provide: LocationStrategy, useClass: HashLocationStrategy},
-    {provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: tooltipDefaults}
-  ],
-  entryComponents: [
-    customComponents
-  ],
-  exports: [RouterModule],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        customComponents
+    ],
+    imports: [
+        routing,
+        BrowserModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        materialModules
+    ],
+    providers: [
+        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+        {provide: LocationStrategy, useClass: HashLocationStrategy},
+        {provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: tooltipDefaults}
+    ],
+    entryComponents: [
+        customComponents
+    ],
+    exports: [RouterModule],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

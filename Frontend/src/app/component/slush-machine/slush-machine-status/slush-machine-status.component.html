@@ -1,21 +1,15 @@
 <div class="flexbox">
-  <div class="slush-machine">
-    <img src="../../../../assets/Slush_Machine.png" />
-    <div class="slush-machine-fill" *ngIf="show">
-      <div class="left-slush-machine-mask">
-        <div
-          [style.--fillLevel.%]="getLevel(leftSlushMachine)"
-          [style.--color]="leftSlushMachine.color"
-          class="left-slush-machine-level"
-        ></div>
-      </div>
-      <div class="right-slush-machine-mask">
-        <div
-          [style.--fillLevel.%]="getLevel(rightSlushMachine)"
-          [style.--color]="rightSlushMachine.color"
-          class="right-slush-machine-level"
-        ></div>
-      </div>
+    <div class="slush-machine">
+        <img src="../../../../assets/Slush_Machine.png"/>
+        <div *ngIf="show" class="slush-machine-fill">
+            <div class="left-slush-machine-mask">
+                <div [style.--color]="leftSlushMachine.color" [style.--fillLevel.%]="getLevel(leftSlushMachine)"
+                     class="left-slush-machine-level"></div>
+            </div>
+            <div class="right-slush-machine-mask">
+                <div [style.--color]="rightSlushMachine.color" [style.--fillLevel.%]="getLevel(rightSlushMachine)"
+                     class="right-slush-machine-level"></div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

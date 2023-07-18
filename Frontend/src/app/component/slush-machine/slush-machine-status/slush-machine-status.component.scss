@@ -39,9 +39,9 @@
 
 .left-slush-machine-level {
   background: linear-gradient(
-    0deg,
-    var(--color, lime) var(--fillLevel),
-    rgba(255,255,255,0) calc(var(--fillLevel) + 10%)
+                  0deg,
+                  var(--color, lime) var(--fillLevel),
+                  rgba(255, 255, 255, 0) calc(var(--fillLevel) + 10%)
   );
 }
 
@@ -54,8 +54,8 @@
 
 .right-slush-machine-level {
   background: linear-gradient(
-    0deg,
-    var(--color, blue) var(--fillLevel),
-    rgba(255, 255, 255, 0) calc(var(--fillLevel) + 10%)
+                  0deg,
+                  var(--color, blue) var(--fillLevel),
+                  rgba(255, 255, 255, 0) calc(var(--fillLevel) + 10%)
   );
 }

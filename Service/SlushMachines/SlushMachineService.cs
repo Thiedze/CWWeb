@@ -1,46 +1,69 @@
-﻿using Service.Database;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Service.Database;
 using Service.SlushMachines.Domain;
 
 namespace Service.SlushMachines;
 
 public class SlushMachineService : ISlushMachineService
 {
+    private List<double> Full { get; } = new() {396, 390};
+
+    private List<double> Empty { get; } = new() {69, 66};
+
     public void AddMeasurement(Measurement measurement)
     {
         using var dataContext = new DataContext();
         dataContext.Measurements?.Add(measurement);
-        dataContext.SaveChangesAsync();
+        dataContext.SaveChangesAsync().Wait();
     }
 
-    public List<SlushMachine>? GetSlushMachines()
+    public List<SlushMachine> GetSlushMachines()
     {
         using var dataContext = new DataContext();
-        var measurement = dataContext.Measurements?.OrderBy(entry => entry.Timestamp).FirstOrDefault();
+        var measurement = dataContext.Measurements?.OrderBy(entry => entry.Timestamp).Reverse().First();
         var slushMachines = dataContext.SlushMachines?.ToList();
 
         if (measurement != null && slushMachines != null)
         {
-            slushMachines[0].Level = CalculateLevel(measurement.MeasurementPoints[0].Value,
-                measurement.MeasurementPoints[1].Value);
-            slushMachines[1].Level = CalculateLevel(measurement.MeasurementPoints[2].Value,
-                measurement.MeasurementPoints[3].Value);
+            dataContext.Entry(measurement).Collection(entry => entry.MeasurementPoints).Load();
+            var measurementPoints = measurement.MeasurementPoints;
+
+            CalculateLevel(slushMachines.Find(slushMachine => SlushMachinePosition.Left.Equals(slushMachine.Position)),
+                measurementPoints);
+            CalculateLevel(slushMachines.Find(slushMachine => SlushMachinePosition.Right.Equals(slushMachine.Position)),
+                measurementPoints);
         }
 
         return slushMachines;
     }
 
-    private static double CalculateLevel(double weightTop, double weightBottom)
+    private void CalculateLevel(SlushMachine slushMachine, List<MeasurementPoint> measurementPoints)
     {
-        double level;
-        if (weightTop > weightBottom)
-        {
-            level = weightBottom / weightTop * 100.0;
-        }
-        else
-        {
-            level = weightTop / weightBottom * 100.0;
-        }
+        var sumLeft = measurementPoints[0].Value + measurementPoints[1].Value;
+        var sumRight = measurementPoints[2].Value + measurementPoints[3].Value;
 
-        return Math.Round(level, 2);
+        if (SlushMachinePosition.Left.Equals(slushMachine.Position))
+        {
+            if (sumLeft > sumRight)
+            {
+                slushMachine.Level = sumLeft / (Full[0] - Empty[0]);
+            }
+            else
+            {
+                slushMachine.Level = (sumLeft - Empty[0]) / Full[0];
+            }
+        }
+        else if (SlushMachinePosition.Right.Equals(slushMachine.Position))
+        {
+            if (sumRight > sumLeft)
+            {
+                slushMachine.Level = sumRight / (Full[0] - Empty[0]);
+            }
+            else
+            {
+                slushMachine.Level = (sumRight - Empty[0]) / Full[0];
+            }
+        }
     }
 }

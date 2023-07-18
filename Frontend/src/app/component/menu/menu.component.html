@@ -1,22 +1,23 @@
 <mat-card appearance="outlined">
-  <mat-card-content>
-    <div class="container" *ngIf="user">
-      <div class="row">
-        <div class="col-md">
-          <button [matMenuTriggerFor]="slush_machine_menu" mat-button>Slush Machine</button>
-          <mat-menu #slush_machine_menu="matMenu">
-            <button mat-menu-item routerLink="/slush_machine_status" routerLinkActive="active">Status</button>
-            <button mat-menu-item routerLink="/slush_machine_admin" routerLinkActive="active">Admin</button>
-          </mat-menu>
+    <mat-card-content>
+        <div *ngIf="user" class="container">
+            <div class="row">
+                <div class="col-md">
+                    <button [matMenuTriggerFor]="slush_machine_menu" mat-button>Slush Machine</button>
+                    <mat-menu #slush_machine_menu="matMenu">
+                        <button mat-menu-item routerLink="/slush_machine_status" routerLinkActive="active">Status
+                        </button>
+                        <button mat-menu-item routerLink="/slush_machine_admin" routerLinkActive="active">Admin</button>
+                    </mat-menu>
+                </div>
+                <div class="col-md-1 text-end">
+                    <button [matMenuTriggerFor]="user_menu" mat-button>User</button>
+                    <mat-menu #user_menu="matMenu">
+                        <button (click)="logout()" *ngIf="user" mat-menu-item>Logout</button>
+                        <button *ngIf="!user" mat-menu-item routerLink="/login" routerLinkActive="active">Login</button>
+                    </mat-menu>
+                </div>
+            </div>
         </div>
-        <div class="col-md-1 text-end">
-          <button [matMenuTriggerFor]="user_menu" mat-button>User</button>
-          <mat-menu #user_menu="matMenu">
-            <button *ngIf="user" mat-menu-item (click)="logout()">Logout</button>
-            <button *ngIf="!user" mat-menu-item routerLink="/login" routerLinkActive="active">Login</button>
-          </mat-menu>
-        </div>
-      </div>
-    </div>
-  </mat-card-content>
+    </mat-card-content>
 </mat-card>

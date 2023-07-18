@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -16,7 +19,7 @@ public class UserService : IUserService
     private byte[] Salt { get; } = {0x21, 0x23, 0x40, 0x10, 0x80, 0x00, 0x40};
     private HashAlgorithmName HashAlgorithm { get; } = HashAlgorithmName.SHA512;
 
-    public AuthenticateResponse? Authenticate(AuthenticateRequest model, string secret)
+    public AuthenticateResponse Authenticate(AuthenticateRequest model, string secret)
     {
         using var dataContex = new DataContext();
         var users = dataContex.Users?.Where(user => user.Username == model.Username);
@@ -35,16 +38,17 @@ public class UserService : IUserService
             {
                 // authentication successful so generate jwt token
                 var token = GenerateJwtToken(users.First(), secret);
-                return new AuthenticateResponse(users.First(), token);   
-            }   
+                return new AuthenticateResponse(users.First(), token);
+            }
         }
 
         throw new Exception();
     }
 
-    public IEnumerable<User> GetAll()
+    public List<User> GetAll()
     {
-        return null;
+        using var dataContex = new DataContext();
+        return dataContex.Users != null ? dataContex.Users.ToList() : new List<User>();
     }
 
     public User GetById(int id)
