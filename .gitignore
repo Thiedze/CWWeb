@@ -3,3 +3,6 @@ bin/
 obj/
 *.db
 Frontend/.angular/
+cwweb.db-shm
+cwweb.db-wal
+weight_example.xlsx
