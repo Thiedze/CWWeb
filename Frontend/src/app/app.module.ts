@@ -25,6 +25,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatMenuModule} from "@angular/material/menu";
+import {MatToolbarModule} from "@angular/material/toolbar";
 import {SlushMachineComponent} from './component/slush-machine/slush-machine.component';
 import {
     SlushMachineStatusComponent
@@ -59,7 +60,8 @@ const materialModules = [
     MatCardModule,
     MatListModule,
     MatSlideToggleModule,
-    MatMenuModule
+    MatMenuModule,
+    MatToolbarModule
 ];
 
 const customComponents = [

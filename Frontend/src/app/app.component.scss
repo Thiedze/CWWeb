@@ -1,8 +1,6 @@
-.menu {
-    display: block;
-    height: 104px;
-}
-
 .page {
-    height: calc(100% - 104px);
+  height: calc(100vh - 64px);
+  @media (max-width: 599px) {
+    height: calc(100vh - 56px);
+  }
 }
